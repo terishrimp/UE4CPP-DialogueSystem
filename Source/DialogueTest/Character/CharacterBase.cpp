@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "CharacterBase.h"
 
 #define OUT
@@ -81,15 +80,13 @@ void ACharacterBase::Tick(float DeltaTime)
 	if (HitInfo.GetActor() && HitInfo.GetActor()->IsA(AInteractable::StaticClass()))
 	{
 		Cast<AInteractable>(HitInfo.GetActor())->SetIsSelected(true);
-		if (_InteractHintHUD )
+		if (_InteractHintHUD)
 		{
 			if (!bInDialogue && !_InteractHintHUD->IsInViewport())
 				_InteractHintHUD->AddToViewport();
 			else if (bInDialogue && _InteractHintHUD->IsInViewport())
 				_InteractHintHUD->RemoveFromViewport();
-
 		}
-
 	}
 	else if (PreviousHitInfo.GetActor() != HitInfo.GetActor() &&
 		PreviousHitInfo.GetActor() &&
@@ -101,7 +98,6 @@ void ACharacterBase::Tick(float DeltaTime)
 	}
 
 	PreviousHitInfo = HitInfo;
-
 }
 
 // Called to bind functionality to input
@@ -116,12 +112,11 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("Lookup", this, &ACharacterBase::TurnPitch);
 }
 
-
 UCharacterHUD* ACharacterBase::GetDialogueHUD() {
 	return _DialogueHUD;
 }
 
-void ACharacterBase::SetIgnoreControllerInput(const bool bIgnoreInput) const 
+void ACharacterBase::SetIgnoreControllerInput(const bool bIgnoreInput) const
 {
 	Controller->SetIgnoreMoveInput(bIgnoreInput);
 	Controller->SetIgnoreLookInput(bIgnoreInput);
@@ -135,7 +130,6 @@ void ACharacterBase::ActivateDialogueHUD() {
 	Cast<APlayerController>(GetController())->SetInputMode(Mode);
 	_DialogueHUD->AddToViewport();
 }
-
 
 void ACharacterBase::DeactivateDialogueHUD() {
 	SetIgnoreControllerInput(false);
@@ -162,7 +156,7 @@ void ACharacterBase::MoveRight(float Value)
 }
 
 void ACharacterBase::Jump() {
-	if(!Controller->IsMoveInputIgnored())
+	if (!Controller->IsMoveInputIgnored())
 		Super::Jump();
 }
 
@@ -170,6 +164,6 @@ void ACharacterBase::TurnYaw(float Rate) {
 	APawn::AddControllerYawInput(Rate);
 }
 
-void ACharacterBase::TurnPitch(float Rate) {
+void ACharacterBase::TurnPitch(float Rate){
 	APawn::AddControllerPitchInput(Rate);
 }

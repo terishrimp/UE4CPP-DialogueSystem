@@ -19,9 +19,6 @@ public:
 	virtual void Update(UDialogueSystem& ds) PURE_VIRTUAL(&UDialogueState::Update, return;);
 	virtual UDialogueState* Exit(UDialogueSystem& ds) PURE_VIRTUAL(&UDialogueState::Exit, return nullptr;);
 	virtual UDialogueState* HandleInput(UDialogueSystem& ds) PURE_VIRTUAL(&UDialogueState::HandleInput, return nullptr;);
-
-private:
-	void OnPostWorldInitialization(UWorld* World, const UWorld::InitializationValues IVS);
 };
 
 UCLASS(Blueprintable)
@@ -36,11 +33,11 @@ public:
 	virtual UDialogueState* HandleInput(UDialogueSystem& ds) override;
 
 	UFUNCTION()
-	void IncrementChars(UDialogueSystem* ds);
+		void IncrementChars(UDialogueSystem* ds);
 
 private:
 	UPROPERTY()
-	UDialogueSystem* _ds;
+		UDialogueSystem* _ds;
 
 	FTimerDelegate TimerDelegate;
 	FTimerHandle TimerHandle;
@@ -56,7 +53,6 @@ public:
 	virtual void Update(UDialogueSystem& ds) override;
 	virtual UDialogueState* Exit(UDialogueSystem& ds) override;
 	virtual UDialogueState* HandleInput(UDialogueSystem& ds) override;
-
 };
 
 UCLASS(Blueprintable)
@@ -69,7 +65,8 @@ public:
 	virtual void Update(UDialogueSystem& ds) override;
 	virtual UDialogueState* Exit(UDialogueSystem& ds) override;
 	virtual UDialogueState* HandleInput(UDialogueSystem& ds) override;
-
+private:
+	void DisplayAllChars(UDialogueSystem& ds);
 };
 
 UCLASS(Blueprintable)
@@ -83,4 +80,3 @@ public:
 	virtual UDialogueState* Exit(UDialogueSystem& ds) override { return nullptr; };
 	virtual UDialogueState* HandleInput(UDialogueSystem& ds) override { return nullptr; };
 };
-

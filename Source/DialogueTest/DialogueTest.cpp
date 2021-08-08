@@ -3,4 +3,4 @@
 #include "DialogueTest.h"
 #include "Modules/ModuleManager.h"
 
-IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, DialogueTest, "DialogueTest" );
+IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, DialogueTest, "DialogueTest");

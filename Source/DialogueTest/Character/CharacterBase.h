@@ -18,26 +18,26 @@ class DIALOGUETEST_API ACharacterBase : public ACharacter
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = DialogueOptions, meta = (AllowPrivateAccess = true))
-	TSubclassOf<UCharacterHUD> _DialogueHUDClass;
+		TSubclassOf<UCharacterHUD> _DialogueHUDClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = DialogueOptions, meta = (AllowPrivateAccess = true))
-	TSubclassOf<UUserWidget> _InteractHintHUDClass;
+		TSubclassOf<UUserWidget> _InteractHintHUDClass;
 
 	UPROPERTY()
-	UCharacterHUD* _DialogueHUD;
+		UCharacterHUD* _DialogueHUD;
 
 	UPROPERTY()
-	UUserWidget* _InteractHintHUD;
+		UUserWidget* _InteractHintHUD;
 
-	void MoveForward(const float Value)const ;
+	void MoveForward(float Value);
 
-	void MoveRight(const float Value)const ;
+	void MoveRight(float Value);
 
 	void Jump() override;
 
-	void TurnYaw(const float Rate)const ;
+	void TurnYaw(float Rate);
 
-	void TurnPitch(const float Rate)const ;
+	void TurnPitch(float Rate);
 
 	void Interact();
 
@@ -46,7 +46,7 @@ private:
 	void DisplayDebugRay(const bool bHitSomething);
 
 	void GetPlayerRayPoints(FVector* out_StartPos, FVector* out_EndPos);
-	
+
 	void GetRaycastResults(FHitResult& out_HitResult, bool& out_bTraceHasHit);
 
 	FHitResult HitInfo;
@@ -73,9 +73,7 @@ public:
 
 	bool bInDialogue = false;
 
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 };

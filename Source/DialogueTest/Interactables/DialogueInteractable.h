@@ -10,50 +10,40 @@
 #include "DialogueTest/DialogueTestGameInstance.h"
 #include "DialogueInteractable.generated.h"
 
-
 /**
  *
  */
-
 
 UCLASS()
 class DIALOGUETEST_API ADialogueInteractable : public AInteractable
 {
 	GENERATED_BODY()
-protected:
-	//Status for which the interactable can be in
-	//Consider creating stat objects with their own execution methods
-	//Seems more work to create separate classes for each of the stats but it might be something to consider
 
 public:
 	//Functions
-	// Sets default values for this actor's properties
 	ADialogueInteractable();
 	bool Execute(APawn* Executor) override;
 	float GetTextSpeed();
 protected:
 	//Exposed variables
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true))
-	UDataTable* _Dialogue;
+		UDataTable* _Dialogue;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (AllowPrivateAccess = true))
-	float _TextSpeed;
+		float _TextSpeed;
 
 	//Variables
 	UPROPERTY()
-	UDialogueSystem* _DialogueSystem;
+		UDialogueSystem* _DialogueSystem;
 
 	UPROPERTY()
-	FDialogueInfo _DialogueInfo;
+		FDialogueInfo _DialogueInfo;
 
 	UPROPERTY()
-	ACharacterBase* _Player;
-
+		ACharacterBase* _Player;
 
 	//Functions
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaTime) override;
-
 };

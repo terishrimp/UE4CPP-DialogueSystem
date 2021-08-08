@@ -3,29 +3,12 @@
 #include "DialogueState.h"
 #include "DialogueSystem.h"
 //base
-
-//UNullDialogueState* UDialogueState::NullDialogueState;
-
 UDialogueState::UDialogueState()
-{
-	//UDialogueState::NullDialogueState = CreateDefaultSubobject<UNullDialogueState>(TEXT("NullDialogueState"));
-	//UDialogueState::NullDialogueState->AddToRoot();
-	//FWorldDelegates::OnPostWorldInitialization.AddUObject(this, &UDialogueState::OnPostWorldInitialization);
-}
-
-void UDialogueState::OnPostWorldInitialization(UWorld* World, const UWorld::InitializationValues IVS) {
-	//if (!UDialogueState::NullDialogueState) {
-	//	UDialogueState::NullDialogueState = NewObject<UNullDialogueState>(this, UNullDialogueState::StaticClass());
-	//	UDialogueState::NullDialogueState->AddToRoot();
-	//}
-}
+{}
 
 //reading
 UReadingState::UReadingState()
-{
-
-	
-}
+{}
 
 void UReadingState::Enter(UDialogueSystem& ds)
 {
@@ -39,6 +22,7 @@ void UReadingState::Enter(UDialogueSystem& ds)
 		true,
 		0.f);
 }
+
 void UReadingState::Update(UDialogueSystem& ds)
 {
 }
@@ -108,7 +92,7 @@ void UPauseState::Enter(UDialogueSystem& ds)
 {
 	ds._DialogueInfoIndex++;
 	ds._CurrentCharIndex = 0;
-	ds.DisplayAllChars();
+	DisplayAllChars(ds);
 }
 void UPauseState::Update(UDialogueSystem& ds)
 {
@@ -124,4 +108,13 @@ UDialogueState* UPauseState::HandleInput(UDialogueSystem& ds)
 		return UDialogueSystem::_CompleteState;
 	else
 		return UDialogueSystem::_ReadingState;
+}
+
+void UPauseState::DisplayAllChars(UDialogueSystem& ds)
+{
+	if (ds._DisplayedText != ds._DialogueInfo.Text) {
+		ds._DisplayedText = ds._DialogueInfo.Text;
+		if (ds._Activator->IsA(ACharacterBase::StaticClass()))
+			Cast<ACharacterBase>(ds._Activator)->GetDialogueHUD()->DialogueText->SetText(FText::FromString(ds._DisplayedText));
+	}
 }

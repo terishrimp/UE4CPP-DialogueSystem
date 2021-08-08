@@ -45,7 +45,7 @@ class DIALOGUETEST_API UDialogueSystem : public UObject
 {
 	GENERATED_BODY()
 
-	friend class UDialogueState;
+		friend class UDialogueState;
 	friend class UReadingState;
 	friend class UPauseState;
 	friend class UCompleteState;
@@ -99,10 +99,5 @@ protected:
 		uint8 _CurrentCharIndex;
 
 	//Functions
-	void IncrementChars();
-
-	void DisplayAllChars();
-
-	EDialogueStat SetStatus(const EDialogueStat Status);
 	void SetStatus_Implementation(UDialogueState* const DialogueState);
 };
